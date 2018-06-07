@@ -164,6 +164,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        //-------------Change the Agreement Text---
 
     }
 

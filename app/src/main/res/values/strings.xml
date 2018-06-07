@@ -48,4 +48,8 @@ Generated 5 paragraphs, 394 words, 2650 bytes of Lorem Ipsum</string>
     <string name="crowd_sort_location">Location</string>
     <string name="crowd_sort_date">Date</string>
     <string name="crowd_sort_volume">Volume</string>
+
+    <string name="agreement_text_single_pit">Volume</string>
+    <string name="agreement_text_crowdsourcing">Volume</string>
+    <string name="agreement_text_truck_driver">Volume</string>
 </resources>
