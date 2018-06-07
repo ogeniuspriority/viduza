@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Pitsan</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat leo, dapibus vel elementum non, malesuada at leo. Aliquam ut ligula vel quam imperdiet varius eget et neque. Etiam ut maximus tortor. In sed magna vitae ex cursus scelerisque. Duis commodo urna quis elit tincidunt pellentesque. Cras vel odio eget velit rutrum aliquam. Morbi venenatis varius rutrum. Mauris pulvinar consequat sollicitudin. Vestibulum venenatis a felis nec rutrum. Donec feugiat scelerisque commodo. Praesent sem nisi, consectetur id erat non, venenatis aliquam mauris.
+
+In efficitur ipsum eget viverra luctus. Quisque ligula mauris, condimentum ac luctus vitae, ullamcorper sed tellus. Vestibulum a pellentesque enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et sem quis mauris pharetra varius molestie a orci. In orci mi, rhoncus id laoreet et, ornare sit amet ante. Pellentesque lectus nibh, lobortis at orci non, ultrices imperdiet ex.
+
+Donec libero lorem, auctor in tempor in, sollicitudin non leo. Sed id dolor egestas, fringilla purus et, ullamcorper ante. Donec pulvinar volutpat interdum. Vivamus sed dapibus ante. Duis eleifend, dui id hendrerit tincidunt, augue nisi ullamcorper nulla, quis mollis neque ex sed leo. Aliquam in neque dapibus, congue est a, mollis massa. Nunc fringilla interdum erat, quis sodales tellus tempor ut. Ut feugiat pretium nulla scelerisque auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+
+Aliquam luctus dapibus aliquam. Suspendisse at arcu tortor. Ut sodales facilisis convallis. Ut a eleifend arcu. Vestibulum quis mattis magna. Maecenas egestas ultricies lacus, eu sollicitudin tortor ullamcorper eu. Suspendisse vel quam a nisl rutrum dictum a in neque. Suspendisse eget metus sed orci auctor dapibus. Nullam non faucibus lacus.
+
+Pellentesque nec gravida lacus, id semper lacus. Proin vel diam at purus posuere porta. Nam nec ligula nec sapien pretium condimentum in sit amet orci. Nullam blandit convallis orci, sit amet ornare magna placerat ac. Curabitur semper bibendum ligula, ac facilisis justo accumsan ac. Phasellus suscipit in quam id mattis. Etiam nec turpis ullamcorper augue pulvinar ornare in id quam. In odio lectus, feugiat nec dui in, tempor tempor felis. Sed dictum tristique tellus, sit amet aliquet orci. Quisque facilisis varius quam, non malesuada enim sollicitudin quis. Suspendisse at vestibulum turpis. Integer scelerisque eu leo tempor tristique. Aliquam malesuada dui elit, vel consectetur metus maximus eu. Vestibulum pharetra dignissim nunc. In molestie mollis tortor, sit amet porta ipsum. Mauris dictum pellentesque sapien vel varius.
+Generated 5 paragraphs, 394 words, 2650 bytes of Lorem Ipsum</string>
+    <string name="spinner_title">CHOOSE SERVICE</string>
+    <string name="agree">Agree and Continue</string>
+    <string name="prompt_phone">Phone number</string>
+    <string name="prompt_names">Full names</string>
+    <string name="prompt_licence">Licence plate</string>
+    <string name="prompt_station">Station</string>
+    <string name="prompt_required_password">Password</string>
+    <string name="prompt_repeat_password">Repeat password</string>
+    <string name="prompt_street">Street</string>
+    <string name="prompt_house_number">House number</string>
+    <string name="volume">Volume</string>
+    <string name="title_activity_truck_dashboard">TruckDashboard</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="crowd_sort_location">Location</string>
+    <string name="crowd_sort_date">Date</string>
+    <string name="crowd_sort_volume">Volume</string>
+</resources>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/registerbtnContainer"
+        android:paddingBottom="16dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical"
+                android:text="ABOUT YOU"
+                android:textAlignment="gravity"
+                android:textAllCaps="true"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="@string/prompt_phone"
+                android:inputType="phone"
+                android:maxLines="1"
+
+                android:singleLine="true"
+                android:textAllCaps="true" />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="@string/prompt_names"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAllCaps="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="@string/prompt_names"
+                android:inputType="textEmailAddress|textAutoComplete"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAllCaps="true" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:text="PIT INFORMATION"
+                android:textAlignment="gravity"
+                android:textAllCaps="true"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="PROVINCE"
+                android:prompt="@string/spinner_title"
+                android:textAllCaps="true"></Spinner>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="DISTRICT"
+                android:prompt="@string/spinner_title"
+                android:textAllCaps="true"></Spinner>
+
+            <EditText
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="@string/prompt_street"
+                android:inputType="textPassword"
+                android:maxLines="1"
+
+                android:singleLine="true"
+                android:textAllCaps="true" />
+
+            <EditText
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="@string/prompt_house_number"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAllCaps="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/login_edit_text"
+                    android:ems="10"
+                    android:hint="@string/volume" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="OR"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/login_edit_text"
+                    android:ems="10"
+                    android:hint="DISTRICT"
+                    android:prompt="@string/spinner_title"
+                    android:textAllCaps="true"></Spinner>
+
+            </LinearLayout>
+
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Check to use GPS location" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/registerbtnContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:padding="8dp">
+
+        <Button
+
+            android:id="@+id/register_btn"
+
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@color/colorWhite"
+            android:text="REGISTER" />
+    </LinearLayout>
+</RelativeLayout>

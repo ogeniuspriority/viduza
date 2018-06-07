@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/buttonBarLayoutsingle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/singleSortLocation"
+
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/crowd_sort_location"
+            android:textSize="12sp"
+            tools:targetApi="lollipop" />
+
+        <Button
+            android:id="@+id/singleSortDate"
+
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/crowd_sort_date"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/singleSortVolume"
+
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/crowd_sort_volume"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/singlelist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonBarLayoutsingle"
+        android:descendantFocusability="blocksDescendants"
+        android:longClickable="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabsingle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+</RelativeLayout>

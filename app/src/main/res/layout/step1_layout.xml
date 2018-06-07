@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
+        android:prompt="@string/spinner_title"></Spinner>
+
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/agreementbtnContainer"
+        android:layout_marginTop="48dp">
+
+
+        <TextView
+            android:id="@+id/agreementtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:gravity="center_vertical|left"
+            android:text="@string/hello_blank_fragment" />
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/agreementbtnContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorTransparentWhite"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/agreementbtn"
+            style="@android:style/Widget.Button.Small"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+
+
+            android:background="@color/colorWhite"
+            android:text="@string/agree" />
+
+    </LinearLayout>
+</RelativeLayout>

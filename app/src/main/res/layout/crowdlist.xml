@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:focusable="false"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <TableRow
+        android:layout_height="56dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="4dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center_horizontal|center">
+
+
+        <TextView
+            android:id="@+id/crowdlocation"
+            android:layout_gravity="start|left"
+            android:layout_weight="1"
+
+            android:clickable="false"
+            android:focusable="false"
+            android:text="Location" />
+
+        <TextView
+            android:id="@+id/crowdvolume"
+            android:layout_gravity="end|right"
+            android:layout_weight="1"
+
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="right"
+            android:text="Volume" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_marginBottom="8dp"
+        android:clickable="false"
+        android:focusable="false">
+
+
+        <TextView
+            android:id="@+id/crowddate"
+            android:layout_gravity="left|center_vertical|start"
+            android:layout_weight="1"
+
+            android:clickable="false"
+            android:focusable="false"
+            android:text="Date" />
+
+
+    </TableRow>
+</TableLayout>
