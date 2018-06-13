@@ -28,7 +28,7 @@ Aliquam luctus dapibus aliquam. Suspendisse at arcu tortor. Ut sodales facilisis
 
 Pellentesque nec gravida lacus, id semper lacus. Proin vel diam at purus posuere porta. Nam nec ligula nec sapien pretium condimentum in sit amet orci. Nullam blandit convallis orci, sit amet ornare magna placerat ac. Curabitur semper bibendum ligula, ac facilisis justo accumsan ac. Phasellus suscipit in quam id mattis. Etiam nec turpis ullamcorper augue pulvinar ornare in id quam. In odio lectus, feugiat nec dui in, tempor tempor felis. Sed dictum tristique tellus, sit amet aliquet orci. Quisque facilisis varius quam, non malesuada enim sollicitudin quis. Suspendisse at vestibulum turpis. Integer scelerisque eu leo tempor tristique. Aliquam malesuada dui elit, vel consectetur metus maximus eu. Vestibulum pharetra dignissim nunc. In molestie mollis tortor, sit amet porta ipsum. Mauris dictum pellentesque sapien vel varius.
 Generated 5 paragraphs, 394 words, 2650 bytes of Lorem Ipsum</string>
-    <string name="spinner_title">CHOOSE SERVICE</string>
+    <string name="spinner_title">CHOOSE PROVINCE</string>
     <string name="agree">Agree and Continue</string>
     <string name="prompt_phone">Phone number</string>
     <string name="prompt_names">Full names</string>

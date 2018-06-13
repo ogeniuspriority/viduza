@@ -20,11 +20,8 @@ public class SlideAdapter extends PagerAdapter {
             "Single pit emptying",
             "Truck owners"
     };
-    public String[] texts = {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat leo, dapibus vel elementum non, malesuada at leo. Aliquam ut ligula vel quam imperdiet varius eget et neque. Etiam ut maximus tortor. In sed magna vitae ex cursus scelerisque. Duis commodo urna quis elit tincidunt pellentesque. Cras vel odio eget velit rutrum aliquam. Morbi venenatis varius rutrum. Mauris pulvinar consequat sollicitudin. Vestibulum venenatis a felis nec rutrum. Donec feugiat scelerisque commodo. Praesent sem nisi, consectetur id erat non, venenatis aliquam mauris.\n",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat leo, dapibus vel elementum non, malesuada at leo. Aliquam ut ligula vel quam imperdiet varius eget et neque. Etiam ut maximus tortor. In sed magna vitae ex cursus scelerisque. Duis commodo urna quis elit tincidunt pellentesque. Cras vel odio eget velit rutrum aliquam. Morbi venenatis varius rutrum. Mauris pulvinar consequat sollicitudin. Vestibulum venenatis a felis nec rutrum. Donec feugiat scelerisque commodo. Praesent sem nisi, consectetur id erat non, venenatis aliquam mauris.\n",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat leo, dapibus vel elementum non, malesuada at leo. Aliquam ut ligula vel quam imperdiet varius eget et neque. Etiam ut maximus tortor. In sed magna vitae ex cursus scelerisque. Duis commodo urna quis elit tincidunt pellentesque. Cras vel odio eget velit rutrum aliquam. Morbi venenatis varius rutrum. Mauris pulvinar consequat sollicitudin. Vestibulum venenatis a felis nec rutrum. Donec feugiat scelerisque commodo. Praesent sem nisi, consectetur id erat non, venenatis aliquam mauris.\n"
-    };
+    //---------------
+    public static volatile int currPos_tr = 0;
     public int[] backgrounds = {
             Color.rgb(55, 55, 55),
             Color.rgb(239, 85, 85),
@@ -37,6 +34,7 @@ public class SlideAdapter extends PagerAdapter {
     };
     Context context;
     LayoutInflater layoutInflater;
+    public static volatile int theIn_posit = 0;
 
     public SlideAdapter(Context context) {
         this.context = context;
@@ -51,6 +49,12 @@ public class SlideAdapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((LinearLayout) object);
     }
+
+    public String[] texts = {
+            "Crowd sourcing Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat leo, dapibus vel elementum non, malesuada at leo. Aliquam ut ligula vel quam imperdiet varius eget et neque. Etiam ut maximus tortor. In sed magna vitae ex cursus scelerisque. Duis commodo urna quis elit tincidunt pellentesque. Cras vel odio eget velit rutrum aliquam. Morbi venenatis varius rutrum. Mauris pulvinar consequat sollicitudin. Vestibulum venenatis a felis nec rutrum. Donec feugiat scelerisque commodo. Praesent sem nisi, consectetur id erat non, venenatis aliquam mauris.\n",
+            "Single pit Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat leo, dapibus vel elementum non, malesuada at leo. Aliquam ut ligula vel quam imperdiet varius eget et neque. Etiam ut maximus tortor. In sed magna vitae ex cursus scelerisque. Duis commodo urna quis elit tincidunt pellentesque. Cras vel odio eget velit rutrum aliquam. Morbi venenatis varius rutrum. Mauris pulvinar consequat sollicitudin. Vestibulum venenatis a felis nec rutrum. Donec feugiat scelerisque commodo. Praesent sem nisi, consectetur id erat non, venenatis aliquam mauris.\n",
+            "Truck Owners Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat leo, dapibus vel elementum non, malesuada at leo. Aliquam ut ligula vel quam imperdiet varius eget et neque. Etiam ut maximus tortor. In sed magna vitae ex cursus scelerisque. Duis commodo urna quis elit tincidunt pellentesque. Cras vel odio eget velit rutrum aliquam. Morbi venenatis varius rutrum. Mauris pulvinar consequat sollicitudin. Vestibulum venenatis a felis nec rutrum. Donec feugiat scelerisque commodo. Praesent sem nisi, consectetur id erat non, venenatis aliquam mauris.\n"
+    };
 
     @NonNull
     @Override
@@ -67,12 +71,14 @@ public class SlideAdapter extends PagerAdapter {
         textView2.setText(titles[position]);
         textView3.setText(texts[position]);
         button.setText(btnTexts[position]);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, RegisterActivity.class);
-                intent.putExtra("service", position);
-
+                intent.putExtra("whichPosition", position);
+                intent.putExtra("whicddhPosition", btnTexts[position]);
+                currPos_tr = position;
                 // Check if we're running on Android 5.0 or higher
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     // Apply activity transition

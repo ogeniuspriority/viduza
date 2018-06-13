@@ -31,6 +31,7 @@
 
 
             <EditText
+                android:id="@+id/client_phone_numbr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -38,30 +39,32 @@
                 android:ems="10"
                 android:hint="@string/prompt_phone"
                 android:inputType="phone"
-                android:maxLines="1"
 
+                android:maxLines="1"
                 android:singleLine="true"
                 android:textAllCaps="true" />
 
 
             <EditText
+                android:id="@+id/client_full_names"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/login_edit_text"
                 android:ems="10"
                 android:hint="@string/prompt_names"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textAllCaps="true" />
 
             <EditText
+                android:id="@+id/client_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_edit_text"
                 android:ems="10"
-                android:hint="@string/prompt_names"
+                android:hint="someone@site...."
                 android:inputType="textEmailAddress|textAutoComplete"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -81,6 +84,7 @@
                 android:textStyle="bold" />
 
             <Spinner
+                android:id="@+id/client_province"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="8dp"
@@ -91,6 +95,18 @@
                 android:textAllCaps="true"></Spinner>
 
             <Spinner
+                android:id="@+id/client_district"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="DISTRICT"
+                android:prompt="@string/spinner_title"
+                android:textAllCaps="true"></Spinner>
+
+            <Spinner
+                android:id="@+id/client_sector"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="8dp"
@@ -102,30 +118,97 @@
 
             <EditText
 
+                android:id="@+id/client_cell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/login_edit_text"
                 android:ems="10"
-                android:hint="@string/prompt_street"
-                android:inputType="textPassword"
-                android:maxLines="1"
+                android:hint="CELL"
+                android:inputType="text"
 
+                android:maxLines="1"
                 android:singleLine="true"
                 android:textAllCaps="true" />
 
             <EditText
 
+                android:id="@+id/client_village"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="VILLAGE"
+                android:inputType="text"
+
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAllCaps="true" />
+
+            <EditText
+                android:id="@+id/client_street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="STREET"
+                android:inputType="text"
+
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAllCaps="true" />
+
+            <EditText
+
+                android:id="@+id/client_house_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/login_edit_text"
                 android:ems="10"
                 android:hint="@string/prompt_house_number"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textAllCaps="true" />
+
+            <Spinner
+                android:id="@+id/client_volume"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:ems="10"
+                android:hint="DISTRICT"
+                android:prompt="@string/spinner_title"
+                android:textAllCaps="true"></Spinner>
+
+            <EditText
+
+                android:id="@+id/client_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:editable="false"
+                android:ems="10"
+                android:hint="start date"
+                android:inputType="text"
+                android:maxLines="1" />
+
+            <EditText
+
+                android:id="@+id/client_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/login_edit_text"
+                android:editable="false"
+                android:ems="10"
+                android:hint="end date"
+                android:inputType="text" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -139,14 +222,16 @@
                     android:layout_marginRight="8dp"
                     android:background="@drawable/login_edit_text"
                     android:ems="10"
-                    android:hint="@string/volume" />
+                    android:hint="@string/volume"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="OR"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
 
                 <Spinner
                     android:layout_width="wrap_content"
@@ -166,7 +251,8 @@
                 android:id="@+id/checkBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Check to use GPS location" />
+                android:text="Check to use GPS location"
+                android:visibility="invisible" />
 
 
         </LinearLayout>

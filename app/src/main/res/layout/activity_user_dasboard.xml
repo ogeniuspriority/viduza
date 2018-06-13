@@ -58,6 +58,7 @@
             android:layout_height="48dp"
             android:clickable="true"
             android:focusable="auto"
+            android:visibility="gone"
             android:focusableInTouchMode="true"
             android:gravity="center_vertical"
             android:onClick="addnewrequest"
