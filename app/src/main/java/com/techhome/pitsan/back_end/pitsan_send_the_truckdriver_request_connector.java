@@ -20,7 +20,8 @@ public class pitsan_send_the_truckdriver_request_connector {
                                             String truck_driver_cell,
                                             String truck_driver_village,
                                             String truck_driver_license_plate,
-                                            String truck_driver_station) {
+                                            String truck_driver_station,
+                                            String truck_driver_volume) {
 
         try {
 
@@ -50,6 +51,9 @@ public class pitsan_send_the_truckdriver_request_connector {
                     + "=" + URLEncoder.encode(truck_driver_license_plate, "UTF-8");
             data = data + "&" + URLEncoder.encode("truck_driver_station", "UTF-8")
                     + "=" + URLEncoder.encode(truck_driver_station, "UTF-8");
+
+            data = data + "&" + URLEncoder.encode("truck_driver_volume", "UTF-8")
+                    + "=" + URLEncoder.encode(truck_driver_volume, "UTF-8");
 
 
             String lastResort = data;

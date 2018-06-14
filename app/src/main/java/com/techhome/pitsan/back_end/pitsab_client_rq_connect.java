@@ -52,14 +52,14 @@ public class pitsab_client_rq_connect {
             data = data + "&" + URLEncoder.encode("client_street", "UTF-8")
                     + "=" + URLEncoder.encode(client_street, "UTF-8");
 
-            data = data + "&" + URLEncoder.encode("client_street", "UTF-8")
-                    + "=" + URLEncoder.encode(client_street, "UTF-8");
-            data = data + "&" + URLEncoder.encode("client_street", "UTF-8")
-                    + "=" + URLEncoder.encode(client_street, "UTF-8");
-            data = data + "&" + URLEncoder.encode("client_street", "UTF-8")
-                    + "=" + URLEncoder.encode(client_street, "UTF-8");
-            data = data + "&" + URLEncoder.encode("client_street", "UTF-8")
-                    + "=" + URLEncoder.encode(client_street, "UTF-8");
+            data = data + "&" + URLEncoder.encode("client_house_number", "UTF-8")
+                    + "=" + URLEncoder.encode(client_house_number, "UTF-8");
+            data = data + "&" + URLEncoder.encode("client_volume", "UTF-8")
+                    + "=" + URLEncoder.encode(client_volume, "UTF-8");
+            data = data + "&" + URLEncoder.encode("client_start_date", "UTF-8")
+                    + "=" + URLEncoder.encode(client_start_date, "UTF-8");
+            data = data + "&" + URLEncoder.encode("client_end_date", "UTF-8")
+                    + "=" + URLEncoder.encode(client_end_date, "UTF-8");
 
 
             String lastResort = data;

@@ -1,5 +1,6 @@
 package com.techhome.pitsan.back_end;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.EditText;
@@ -10,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 
 /**
@@ -72,12 +72,7 @@ public class pitsan_send_the_truckdriver_request extends AsyncTask<Void, Void, S
     @Override
     protected String doInBackground(Void... voids) {
 
-        try {
-            return this.downloadData();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return this.downloadData();
     }
 
     @Override
@@ -88,6 +83,25 @@ public class pitsan_send_the_truckdriver_request extends AsyncTask<Void, Void, S
 
         } else {
             //parse the json--
+            if (jsonData.contains("REq Okay")) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(c);
+                alertDialogBuilder.setTitle("Your Title");
+                alertDialogBuilder.setMessage("Message here!").setCancelable(false);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.setCancelable(false);
+                alertDialog.show();
+                //------------Clear the fields---------------------
+                truck_driver_phone_numbr.setText("");
+                truck_driver_full_names.setText("");
+                truck_driver_email.setText("");
+                truck_driver_cell.setText("");
+                truck_driver_village.setText("");
+                truck_driver_street.setText("");
+                truck_driver_house_number.setText("");
+                truck_driver_license_plate.setText("");
+                truck_driver_station.setText("");
+
+            }
 
         }
     }
@@ -103,7 +117,7 @@ public class pitsan_send_the_truckdriver_request extends AsyncTask<Void, Void, S
                 truck_driver_cell.getText().toString(),
                 truck_driver_village.getText().toString(),
                 truck_driver_license_plate.getText().toString(),
-                truck_driver_station.getText().toString());
+                truck_driver_station.getText().toString(), truck_driver_volume.getSelectedItem().toString());
         if (con == null) {
             return null;
         }

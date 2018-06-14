@@ -1,5 +1,6 @@
 package com.techhome.pitsan.back_end;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.EditText;
@@ -10,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 
 /**
@@ -74,12 +74,7 @@ public class pitsan_send_the_client_request extends AsyncTask<Void, Void, String
     @Override
     protected String doInBackground(Void... voids) {
 
-        try {
-            return this.downloadData();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return this.downloadData();
     }
 
     @Override
@@ -90,6 +85,25 @@ public class pitsan_send_the_client_request extends AsyncTask<Void, Void, String
 
         } else {
             //parse the json--
+            if (jsonData.contains("REq Okay")) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(c);
+                alertDialogBuilder.setTitle("Your Title");
+                alertDialogBuilder.setMessage("Message here!").setCancelable(false);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.setCancelable(false);
+                alertDialog.show();
+                //------------Clear the fields---------------------
+                client_phone_numbr.setText("");
+                client_full_names.setText("");
+                client_email.setText("");
+                client_cell.setText("");
+                client_village.setText("");
+                client_street.setText("");
+                client_house_number.setText("");
+                client_start_date.setText("");
+                client_end_date.setText("");
+
+            }
 
         }
     }
