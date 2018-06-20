@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CrowdsourcingFragment extends Fragment implements AbsListView.OnScrollListener {
+public class CrowdsourcingFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     static String[] location;
     static String[] volume;
@@ -73,16 +72,13 @@ public class CrowdsourcingFragment extends Fragment implements AbsListView.OnScr
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_crowdsourcing, container, false);
-        mHandler = new Handler();
-        View footer = getLayoutInflater().inflate(R.layout.progress_bar_footer, null);
-        progressBar = footer.findViewById(R.id.progressBar);
-        list = rootView.findViewById(R.id.crowdlist);
-        list.addFooterView(footer);
-        list.setItemsCanFocus(false);
+
+//        View footer = getLayoutInflater().inflate(R.layout.progress_bar_footer, null);
+//        progressBar = footer.findViewById(R.id.progressBar);
+        list = rootView.findViewById(R.id.list);
         list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         list.setAdapter(crowdsourcingListAdapter);
-        list.setOnScrollListener(this); //listen for a scroll movement to the bottom
-        progressBar.setVisibility((10 < date.length) ? View.VISIBLE : View.GONE);
+        //listen for a scroll movement to the bottom
         viewFab = rootView.findViewById(R.id.fabcrowdsourcing);
         viewFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,16 +128,4 @@ public class CrowdsourcingFragment extends Fragment implements AbsListView.OnScr
         return rootView;
     }
 
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-    }
-
-    @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        if (firstVisibleItem + visibleItemCount == totalItemCount && !crowdsourcingListAdapter.endReached() && !hasCallback) { //check if we've reached the bottom
-            mHandler.postDelayed(showMore, 300);
-            hasCallback = true;
-        }
-    }
 }

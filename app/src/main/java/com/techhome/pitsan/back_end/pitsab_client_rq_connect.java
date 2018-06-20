@@ -1,5 +1,7 @@
 package com.techhome.pitsan.back_end;
 
+import android.util.Log;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -23,7 +25,8 @@ public class pitsab_client_rq_connect {
                                             String client_house_number,
                                             String client_volume,
                                             String client_start_date,
-                                            String client_end_date) {
+                                            String client_end_date,
+                                            String singlePitOrcrouwd) {
 
         try {
 
@@ -60,6 +63,8 @@ public class pitsab_client_rq_connect {
                     + "=" + URLEncoder.encode(client_start_date, "UTF-8");
             data = data + "&" + URLEncoder.encode("client_end_date", "UTF-8")
                     + "=" + URLEncoder.encode(client_end_date, "UTF-8");
+            data = data + "&" + URLEncoder.encode("singlePitOrcrouwd", "UTF-8")
+                    + "=" + URLEncoder.encode(singlePitOrcrouwd, "UTF-8");
 
 
             String lastResort = data;
@@ -79,8 +84,10 @@ public class pitsab_client_rq_connect {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
+            Log.w("netErroe", "null conn" + e.toString());
         } catch (IOException e) {
             e.printStackTrace();
+            Log.w("netErroe", "null conn" + e.toString());
         }
         return null;
     }

@@ -1,5 +1,6 @@
 package com.techhome.pitsan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -116,7 +117,7 @@ public class TruckDashboard extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
+    public static volatile String username = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +156,10 @@ public class TruckDashboard extends AppCompatActivity {
 
             }
         });
+        //-------------
+        Intent intent = getIntent();
+        String username_ = intent.getStringExtra("username");
+        username = username_;
 
     }
 

@@ -3,10 +3,10 @@ package com.techhome.pitsan;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -19,6 +19,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.techhome.pitsan.back_end.pitsan_send_the_client_request;
+import com.techhome.pitsan.back_end.pitsan_send_the_truckdriver_request;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +33,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
@@ -182,6 +187,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         //Log.w("currPos_tr", ""+SlideAdapter.currPos_tr);
         spinner.setSelection(SlideAdapter.currPos_tr);
         selected = SlideAdapter.currPos_tr;
+        Log.w("currPos_tr", "" + SlideAdapter.currPos_tr);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -2054,9 +2060,49 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                         register_client.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(RegisterActivity.this, UserDasboard.class);
-                                Toast.makeText(RegisterActivity.this, "Selected: " + v, Toast.LENGTH_LONG).show();
-                                startActivity(intent);
+                                //Intent intent = new Intent(RegisterActivity.this, UserDasboard.class);
+                                if (client_phone_numbr.getText().toString().equalsIgnoreCase("") || !isPhoneNumberValid(client_phone_numbr.getText().toString())) {
+                                    Toast.makeText(RegisterActivity.this, "Phone number empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_full_names.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Full Names empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_email.getText().toString().equalsIgnoreCase("") || !isEmailValid(client_email.getText().toString())) {
+                                    Toast.makeText(RegisterActivity.this, "Email empty or Invalid", Toast.LENGTH_SHORT).show();
+
+
+                                } else if (client_cell.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Cell empty or Invalid", Toast.LENGTH_SHORT).show();
+                                } else if (client_village.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Village empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_street.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Street empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_house_number.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "House number empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_start_date.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Start date empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_end_date.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "End date empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    new pitsan_send_the_client_request(RegisterActivity.this, Config.SEND_S_pit_OR_CROWDSOURCING_REQUEST.toString(), client_phone_numbr,
+                                            client_full_names,
+                                            client_email,
+                                            client_province,
+                                            client_district,
+                                            client_sector,
+                                            client_cell,
+                                            client_village,
+                                            client_street,
+                                            client_house_number,
+                                            client_volume,
+                                            client_start_date,
+                                            client_end_date, "" + selected).execute();
+                                }
                             }
                         });
                         break;
@@ -2070,9 +2116,49 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                         register_client.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(RegisterActivity.this, UserDasboard.class);
-                                Toast.makeText(RegisterActivity.this, "Selected: " + v, Toast.LENGTH_LONG).show();
-                                startActivity(intent);
+                                //Intent intent = new Intent(RegisterActivity.this, UserDasboard.class);
+                                if (client_phone_numbr.getText().toString().equalsIgnoreCase("") || !isPhoneNumberValid(client_phone_numbr.getText().toString())) {
+                                    Toast.makeText(RegisterActivity.this, "Phone number empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_full_names.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Full Names empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_email.getText().toString().equalsIgnoreCase("") || !isEmailValid(client_email.getText().toString())) {
+                                    Toast.makeText(RegisterActivity.this, "Email empty or Invalid", Toast.LENGTH_SHORT).show();
+
+
+                                } else if (client_cell.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Cell empty or Invalid", Toast.LENGTH_SHORT).show();
+                                } else if (client_village.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Village empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_street.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Street empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_house_number.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "House number empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_start_date.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Start date empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (client_end_date.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "End date empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    new pitsan_send_the_client_request(RegisterActivity.this, Config.SEND_S_pit_OR_CROWDSOURCING_REQUEST.toString(), client_phone_numbr,
+                                            client_full_names,
+                                            client_email,
+                                            client_province,
+                                            client_district,
+                                            client_sector,
+                                            client_cell,
+                                            client_village,
+                                            client_street,
+                                            client_house_number,
+                                            client_volume,
+                                            client_start_date,
+                                            client_end_date, "" + selected).execute();
+                                }
                             }
                         });
                         break;
@@ -2087,9 +2173,43 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                         register_truck.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(RegisterActivity.this, TruckDashboard.class);
-                                Toast.makeText(RegisterActivity.this, "Selected: " + v, Toast.LENGTH_LONG).show();
-                                startActivity(intent);
+                                //Intent intent = new Intent(RegisterActivity.this, TruckDashboard.class);
+                                if (truck_driver_phone_numbr.getText().toString().equalsIgnoreCase("") || !isPhoneNumberValid(truck_driver_phone_numbr.getText().toString())) {
+                                    Toast.makeText(RegisterActivity.this, "Phone number empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (truck_driver_full_names.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Full Names empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (truck_driver_email.getText().toString().equalsIgnoreCase("") || !isEmailValid(truck_driver_email.getText().toString())) {
+                                    Toast.makeText(RegisterActivity.this, "Email empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (truck_driver_cell.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Cell empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (truck_driver_village.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Village empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (truck_driver_street.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "Street  empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else if (truck_driver_house_number.getText().toString().equalsIgnoreCase("")) {
+                                    Toast.makeText(RegisterActivity.this, "House number  empty or Invalid", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    new pitsan_send_the_truckdriver_request(RegisterActivity.this, Config.SEND_TRUCK_DRIVER_REQUEST.toString(), truck_driver_phone_numbr,
+                                            truck_driver_full_names,
+                                            truck_driver_email,
+                                            truck_driver_province,
+                                            truck_driver_district,
+                                            truck_driver_sector,
+                                            truck_driver_cell,
+                                            truck_driver_village,
+                                            truck_driver_street,
+                                            truck_driver_house_number,
+                                            truck_driver_volume,
+                                            truck_driver_license_plate,
+                                            truck_driver_station).execute();
+                                }
                             }
                         });
                         break;
@@ -2209,14 +2329,16 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         if (v == register_client) {
             //Intent intent = new Intent(RegisterActivity.this, UserDasboard.class);
             //Toast.makeText(this, "Selected: " + v, Toast.LENGTH_LONG).show();
-            //startActivity(intent);
+            //startActivity(intent);selected
             //------------------------
+
 
         } else if (v == register_truck) {
             //Intent intent = new Intent(RegisterActivity.this, TruckDashboard.class);
             //Toast.makeText(this, "Selected: " + v, Toast.LENGTH_LONG).show();
             //startActivity(intent);
             //---------------------
+
         }
     }
 
@@ -2228,5 +2350,33 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.CHINA);
 
         //Birthday.setText(df.format(myCalendar.getTime()));
+    }
+
+    public boolean isEmailValid(String email) {
+        String regExpn =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        return matcher.matches();
+    }
+
+    public boolean isPhoneNumberValid(String phone) {
+        String regExpn = "^([d{12}]$)";
+
+        CharSequence inputStr = phone;
+
+        Pattern pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        return phone.length() == 12 || phone.length() == 10;
     }
 }

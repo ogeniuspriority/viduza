@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SingleFragment extends Fragment {
+public class CrowdSourcingFragment_ extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     static String[] location;
     static String[] volume;
@@ -25,11 +25,11 @@ public class SingleFragment extends Fragment {
     private android.support.design.widget.FloatingActionButton viewFab;
     private Dialog replyToSingleRequest;
 
-    public SingleFragment() {
+    public CrowdSourcingFragment_() {
     }
 
-    public static SingleFragment newInstance(String[] d, String[] l, String[] v) {
-        SingleFragment fragment = new SingleFragment();
+    public static CrowdSourcingFragment_ newInstance(String[] d, String[] l, String[] v) {
+        CrowdSourcingFragment_ fragment = new CrowdSourcingFragment_();
         date = d;
         location = l;
         volume = v;
@@ -47,7 +47,7 @@ public class SingleFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_single, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_crowdsourcing, container, false);
         singleList = rootView.findViewById(R.id.list);
         singleList.setItemsCanFocus(false);
         singleList.setAdapter(singleListAdapter);

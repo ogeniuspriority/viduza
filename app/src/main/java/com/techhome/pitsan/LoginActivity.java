@@ -28,6 +28,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.techhome.pitsan.back_end.pitsan_client_ref_login_request;
+import com.techhome.pitsan.back_end.pitsan_truck_driver_log_in_request;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,17 +89,49 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
         });
+        //--------------
+        Intent intent = getIntent();
+        String client_id = intent.getStringExtra("client_id");
+        //-----------
+        final EditText viduza_client_login = findViewById(R.id.viduza_client_login);
+        String rere = (client_id != null) ? client_id : "";
+        viduza_client_login.setText("" + rere);
+        //------------------------------------
+        final EditText email = findViewById(R.id.email);
+        final EditText password = findViewById(R.id.password);
 
-        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button email_sign_in_button_truck = findViewById(R.id.email_sign_in_button_truck);
+        email_sign_in_button_truck.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                //Toast.makeText(LoginActivity.this, "Okay", Toast.LENGTH_SHORT).show();
+                //----------truck log
+                if (email.getText().toString().equalsIgnoreCase("") || password.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(LoginActivity.this, "Empty field!", Toast.LENGTH_SHORT).show();
+                } else {
+                    new pitsan_truck_driver_log_in_request(LoginActivity.this, Config.PITSAN_LOG_FOR_TRUCK_DRIVER.toString(), email, password).execute();
+                }
+            }
+        });
+
+        Button email_sign_in_button = findViewById(R.id.email_sign_in_button);
+        email_sign_in_button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(LoginActivity.this, "Okay", Toast.LENGTH_SHORT).show();
+                //-------client ref log
+                if (viduza_client_login.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(LoginActivity.this, "Empty field!", Toast.LENGTH_SHORT).show();
+                } else {
+                    new pitsan_client_ref_login_request(LoginActivity.this, Config.PITSAN_LOG_USING_REF_ID_FOR_CLIENT.toString(), viduza_client_login).execute();
+                }
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        //-----------
+
     }
 
     private void populateAutoComplete() {

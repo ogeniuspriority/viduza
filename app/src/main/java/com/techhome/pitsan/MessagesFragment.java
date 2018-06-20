@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,8 +20,9 @@ import java.util.Random;
 
 public class MessagesFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    RecyclerView messageRecyclerView;
+    SwipeRefreshLayout messageRecyclerView;
     private List<Message> messageList = new ArrayList<>();
+    ListView list;
 
     private MessageRecyclerAdapter mAdapter;
 
@@ -42,19 +42,13 @@ public class MessagesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_message, container, false);
-        messageRecyclerView = rootView.findViewById(R.id.messageRecyclerView);
-
+        messageRecyclerView = rootView.findViewById(R.id.swiperefresh);
+        list = rootView.findViewById(R.id.list);
 
         mAdapter = new MessageRecyclerAdapter(messageList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        messageRecyclerView.setLayoutManager(mLayoutManager);
-        messageRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        messageRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
-        messageRecyclerView.setAdapter(mAdapter);
-        messageRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), messageRecyclerView, new RecyclerTouchListener.ClickListener() {
-
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Message message = messageList.get(position);
                 Bundle messageBundle = new Bundle();
                 messageBundle.putString("Name", message.getName());
@@ -62,13 +56,10 @@ public class MessagesFragment extends Fragment {
                 intent.putExtras(messageBundle);
                 startActivity(intent);
                 Toast.makeText(getContext(), message.getName() + " is selected!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
 
             }
-        }));
+        });
+
         prepareMessageData();
         return rootView;
     }

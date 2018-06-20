@@ -1,16 +1,19 @@
 package com.techhome.pitsan.back_end;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 
 /**
@@ -32,6 +35,8 @@ public class pitsan_send_the_truckdriver_request extends AsyncTask<Void, Void, S
     Spinner truck_driver_volume;
     EditText truck_driver_license_plate;
     EditText truck_driver_station;
+    //----------
+    private ProgressDialog dialog;
 
     public pitsan_send_the_truckdriver_request(Context c, String magicUrl, EditText truck_driver_phone_numbr,
                                                EditText truck_driver_full_names,
@@ -61,34 +66,47 @@ public class pitsan_send_the_truckdriver_request extends AsyncTask<Void, Void, S
         this.truck_driver_volume = truck_driver_volume;
         this.truck_driver_license_plate = truck_driver_license_plate;
         this.truck_driver_station = truck_driver_station;
+        //-----------
+        dialog = new ProgressDialog(c);
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        dialog.setMessage("Sending..");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
 
     }
 
     @Override
     protected String doInBackground(Void... voids) {
 
-        return this.downloadData();
+        try {
+            return this.downloadData();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     protected void onPostExecute(String jsonData) {
         super.onPostExecute(jsonData);
-
+        dialog.dismiss();
         if (jsonData == null) {
-
+            Toast.makeText(c, "No Internet!", Toast.LENGTH_SHORT).show();
         } else {
             //parse the json--
             if (jsonData.contains("REq Okay")) {
+                String string = jsonData;
+                String[] parts = string.split("~");
+
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(c);
-                alertDialogBuilder.setTitle("Your Title");
-                alertDialogBuilder.setMessage("Message here!").setCancelable(false);
+                alertDialogBuilder.setTitle("From PITSAN LTD.");
+                alertDialogBuilder.setMessage("Successfully registered, PITSAN Ltd will contact you!").setCancelable(false);
                 AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.setCancelable(false);
+                alertDialog.setCancelable(true);
                 alertDialog.show();
                 //------------Clear the fields---------------------
                 truck_driver_phone_numbr.setText("");

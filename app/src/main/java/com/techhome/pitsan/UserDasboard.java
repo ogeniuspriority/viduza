@@ -77,6 +77,7 @@ public class UserDasboard extends AppCompatActivity {
             "12/05/2018",
             "12/05/2018"
     };
+    public static volatile String refId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,10 @@ public class UserDasboard extends AppCompatActivity {
                 ));
             }
         });
+        //-------
+        Intent intent = getIntent();
+        String refid = intent.getStringExtra("refid");
+        refId = refid;
 
 
     }

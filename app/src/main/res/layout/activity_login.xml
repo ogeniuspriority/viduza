@@ -73,7 +73,7 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/login_edit_text"
                 android:ems="10"
-                android:hint="@string/prompt_email"
+                android:hint="Username"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true" />
@@ -85,10 +85,20 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_edit_text"
                 android:ems="10"
-                android:hint="@string/prompt_password"
+                android:hint="Password"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true" />
+
+            <Button
+                android:id="@+id/email_sign_in_button_truck"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:text="SIGN IN"
+                android:textStyle="bold" />
 
             <TextView
 
@@ -104,13 +114,13 @@
                 android:textStyle="italic" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/viduza_client_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_edit_text"
                 android:ems="10"
-                android:hint="@string/prompt_password"
-                android:inputType="textPassword"
+                android:hint="REFID HERE"
+                android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true" />
 
