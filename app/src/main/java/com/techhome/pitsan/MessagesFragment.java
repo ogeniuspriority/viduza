@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.techhome.pitsan.back_end.pitsan_load_message_feeds;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +25,7 @@ public class MessagesFragment extends Fragment {
     SwipeRefreshLayout messageRecyclerView;
     private List<Message> messageList = new ArrayList<>();
     ListView list;
+    SwipeRefreshLayout swiperefresh;
 
     private MessageRecyclerAdapter mAdapter;
 
@@ -59,8 +62,19 @@ public class MessagesFragment extends Fragment {
 
             }
         });
+        //-------
+        swiperefresh = rootView.findViewById(R.id.swiperefresh);
+        //-------
+        swiperefresh = rootView.findViewById(R.id.swiperefresh);
+        swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new pitsan_load_message_feeds(getActivity(), Config.PITSAN_SINGLE_PIT_DATA_LOAD_FEEDS.toString(), TruckDashboard.username, swiperefresh, list).execute();
+            }
+        });
+        //-----------
 
-        prepareMessageData();
+        //prepareMessageData();
         return rootView;
     }
 

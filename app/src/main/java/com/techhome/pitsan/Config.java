@@ -17,6 +17,15 @@ public class Config {
             + "PITSAN/mobile_app/pitsan_CommonUserLogIn.php";
     public static String PITSAN_LOG_FOR_TRUCK_DRIVER = IP_ADDRESS
             + "PITSAN/mobile_app/pitsan_admin_user_or_truck_userLOgin.php";
+    //------------------------------------The load data--------
+    public static String PITSAN_SINGLE_PIT_DATA_LOAD_FEEDS = IP_ADDRESS
+            + "PITSAN/mobile_app/pitsan_load_single_pit_data_for_driver.php";
+    public static String PITSAN_CROWDSOURCING_PIT_DATA_LOAD_FEEDS = IP_ADDRESS
+            + "PITSAN/mobile_app/pitsan_load_crowdsourcing_data_for_driver.php";
+    public static String PITSAN_MESSAGES_PIT_DATA_LOAD_FEEDS = IP_ADDRESS
+            + "PITSAN/mobile_app/pitsan_load_messages_to_pitsan.php";
+    public static String PITSAN_REF_ID_OFFERS_PIT_DATA_LOAD_FEEDS = IP_ADDRESS
+            + "PITSAN/mobile_app/pitsan_load_ref_id_offers_data.php";
 
 
 }

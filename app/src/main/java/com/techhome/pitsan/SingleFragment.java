@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.techhome.pitsan.back_end.pitsan_load_single_pit_offer_feeds;
+
+import static com.techhome.pitsan.TruckDashboard.username;
 
 public class SingleFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -24,6 +29,7 @@ public class SingleFragment extends Fragment {
     private ListView singleList;
     private android.support.design.widget.FloatingActionButton viewFab;
     private Dialog replyToSingleRequest;
+    SwipeRefreshLayout swiperefresh;
 
     public SingleFragment() {
     }
@@ -50,7 +56,7 @@ public class SingleFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_single, container, false);
         singleList = rootView.findViewById(R.id.list);
         singleList.setItemsCanFocus(false);
-        singleList.setAdapter(singleListAdapter);
+        //singleList.setAdapter(singleListAdapter);
         viewFab = rootView.findViewById(R.id.fabsingle);
         viewFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +96,17 @@ public class SingleFragment extends Fragment {
                 }
             }
         });
+        //-------
+        swiperefresh = rootView.findViewById(R.id.swiperefresh);
+        swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new pitsan_load_single_pit_offer_feeds(getActivity(), Config.PITSAN_SINGLE_PIT_DATA_LOAD_FEEDS.toString(), username, swiperefresh, singleList).execute();
+            }
+        });
+        //-----------
+        new pitsan_load_single_pit_offer_feeds(getActivity(), Config.PITSAN_SINGLE_PIT_DATA_LOAD_FEEDS.toString(), username, swiperefresh, singleList).execute();
+
 
 
         return rootView;

@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,13 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.techhome.pitsan.back_end.pitsan_load_crowdsourcingsingle_pit_offer_feeds;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.techhome.pitsan.TruckDashboard.username;
 
 public class CrowdsourcingFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -34,6 +39,7 @@ public class CrowdsourcingFragment extends Fragment {
     private Handler mHandler;
     private ProgressBar progressBar;
     private boolean hasCallback;
+    SwipeRefreshLayout swiperefresh;
     private Runnable showMore = new Runnable() {
         public void run() {
             boolean noMoreToShow = crowdsourcingListAdapter.showMore(); //show more views and find out if
@@ -77,7 +83,7 @@ public class CrowdsourcingFragment extends Fragment {
 //        progressBar = footer.findViewById(R.id.progressBar);
         list = rootView.findViewById(R.id.list);
         list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        list.setAdapter(crowdsourcingListAdapter);
+        //list.setAdapter(crowdsourcingListAdapter);
         //listen for a scroll movement to the bottom
         viewFab = rootView.findViewById(R.id.fabcrowdsourcing);
         viewFab.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +129,18 @@ public class CrowdsourcingFragment extends Fragment {
 
             }
         });
+        swiperefresh = rootView.findViewById(R.id.swiperefresh);
+        //-------
+        swiperefresh = rootView.findViewById(R.id.swiperefresh);
+        swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new pitsan_load_crowdsourcingsingle_pit_offer_feeds(getActivity(), Config.PITSAN_CROWDSOURCING_PIT_DATA_LOAD_FEEDS.toString(), username, swiperefresh, list).execute();
+            }
+        });
+        //-----------
+        new pitsan_load_crowdsourcingsingle_pit_offer_feeds(getActivity(), Config.PITSAN_CROWDSOURCING_PIT_DATA_LOAD_FEEDS.toString(), username, swiperefresh, list).execute();
+
 
 
         return rootView;

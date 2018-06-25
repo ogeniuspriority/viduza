@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.widget.ListView;
+
+import com.techhome.pitsan.back_end.pitsan_load_message_feeds_responses;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +26,8 @@ public class MessagesActivity extends AppCompatActivity {
     @NonNull
     private List<MessageListItem> items = new ArrayList<>();
     private MessageItemAdapter mAdapter;
+    SwipeRefreshLayout swiperefresh;
+    ListView list;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,35 +42,21 @@ public class MessagesActivity extends AppCompatActivity {
         String name = bundle.getString("Name");
         actionBar.setTitle(name);
 
+        //---------
+        list = findViewById(R.id.list);
 
-        Map<Date, List<Message>> messages = toMap(loadMessages());
-
-        for (Date date : messages.keySet()) {
-            MessageHeaderItem header = new MessageHeaderItem(date);
-            items.add(header);
-            for (Message event : messages.get(date)) {
-                MessageItem item = new MessageItem(event);
-                items.add(item);
-            }
-        }
-        messageItemRecyclerView = findViewById(R.id.message_bubble_list);
-
-        messageItemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        messageItemRecyclerView.setAdapter(new MessageItemAdapter(items));
-
-
-        messageItemRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, messageItemRecyclerView, new RecyclerTouchListener.ClickListener() {
+        // prepareMessageData();
+        swiperefresh = findViewById(R.id.swiperefresh);
+        //-------
+        swiperefresh = findViewById(R.id.swiperefresh);
+        swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View view, int position) {
-
+            public void onRefresh() {
+                new pitsan_load_message_feeds_responses(MessagesActivity.this, Config.PITSAN_SINGLE_PIT_DATA_LOAD_FEEDS.toString(), TruckDashboard.username, swiperefresh, list).execute();
             }
+        });
+        //-----------
 
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
-        prepareMessageData();
     }
 
     private void prepareMessageData() {
