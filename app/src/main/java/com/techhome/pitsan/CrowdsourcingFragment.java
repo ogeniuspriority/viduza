@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,6 +21,8 @@ import com.techhome.pitsan.back_end.pitsan_load_crowdsourcingsingle_pit_offer_fe
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.techhome.pitsan.TruckDashboard.username;
 
@@ -40,6 +42,10 @@ public class CrowdsourcingFragment extends Fragment {
     private ProgressBar progressBar;
     private boolean hasCallback;
     SwipeRefreshLayout swiperefresh;
+    public static volatile ArrayList<String> seltChoices_users_for_sending_top = new ArrayList<String>();
+    public static volatile ArrayList<String> seltChoices_users_for_sending_top_removed = new ArrayList<String>();
+    static volatile boolean menuVisible = true;
+    ArrayList<String> seltChoices_users = new ArrayList<String>();
     private Runnable showMore = new Runnable() {
         public void run() {
             boolean noMoreToShow = crowdsourcingListAdapter.showMore(); //show more views and find out if
@@ -73,62 +79,22 @@ public class CrowdsourcingFragment extends Fragment {
         crowdsourcingListAdapter = new CrowdsourcingListAdapter(getActivity(), location, volume, date, 10, 5);
     }
 
+    int count;
+    FrameLayout this_is_the_pop;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_crowdsourcing, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_crowdsourcing, container, false);
 
 //        View footer = getLayoutInflater().inflate(R.layout.progress_bar_footer, null);
 //        progressBar = footer.findViewById(R.id.progressBar);
         list = rootView.findViewById(R.id.list);
+        list.setItemsCanFocus(false);
         list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        //list.setAdapter(crowdsourcingListAdapter);
-        //listen for a scroll movement to the bottom
-        viewFab = rootView.findViewById(R.id.fabcrowdsourcing);
-        viewFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog replyToRequest = new Dialog(getContext());
-                replyToRequest.setContentView(R.layout.dialog_replytorequest);
-                TextView text_selected = replyToRequest.findViewById(R.id.textView6);
-                text_selected.setText(" requests selected");
-                replyToRequest.show();
-            }
-        });
-        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 
 
-                viewFab.setVisibility(View.VISIBLE);
-                selected++;
-                selectedList.add(position);
-                Log.i("longClicked", selected + "--" + position);
-                return true;
-            }
-        });
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                for (int p = 0; p < selectedList.size() - 1; p++) {
-                    if (position == selectedList.get(p)) {
-                        view.setBackgroundColor(getResources().getColor(R.color.colorTransparentWhite));
-                        if (selected == 1) {
-                            selected--;
-                            Log.i("shortClicked", selected + "");
-                            viewFab.setVisibility(View.GONE);
-                        } else if (selected > 1) {
-                            selected--;
-                        }
-                        break;
-                    }
-                }
-
-
-            }
-        });
         swiperefresh = rootView.findViewById(R.id.swiperefresh);
         //-------
         swiperefresh = rootView.findViewById(R.id.swiperefresh);
@@ -139,11 +105,49 @@ public class CrowdsourcingFragment extends Fragment {
             }
         });
         //-----------
+        this_is_the_pop = rootView.findViewById(R.id.this_is_the_pop);
+        final TextView the_text_to_count = rootView.findViewById(R.id.the_text_to_count);
         new pitsan_load_crowdsourcingsingle_pit_offer_feeds(getActivity(), Config.PITSAN_CROWDSOURCING_PIT_DATA_LOAD_FEEDS.toString(), username, swiperefresh, list).execute();
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (seltChoices_users_for_sending_top != null) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (String k : seltChoices_users_for_sending_top_removed) {
+                                try {
+                                    seltChoices_users_for_sending_top.remove(seltChoices_users_for_sending_top.indexOf(k));
+                                } catch (RuntimeException ff) {
+
+                                }
+                            }
+                            seltChoices_users_for_sending_top_removed.clear();
 
 
+                            if (seltChoices_users_for_sending_top.size() == 0) {
+                                this_is_the_pop.setVisibility(View.GONE);
+                            } else {
+                                the_text_to_count.setText("" + seltChoices_users_for_sending_top.size() + "Request(s)");
+                                this_is_the_pop.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
+
+                }
+            }
+        }, 0, 200);
+        //-------------
+        FloatingActionButton fabcrowdsourcing = rootView.findViewById(R.id.fabcrowdsourcing);
+        fabcrowdsourcing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         return rootView;
     }
+
 
 }

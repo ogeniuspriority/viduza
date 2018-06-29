@@ -6,6 +6,7 @@ android {
         applicationId "com.techhome.pitsan"
         minSdkVersion 15
         targetSdkVersion 27
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -29,4 +30,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.takisoft.fix:datetimepicker:1.0.5'
+    implementation 'com.github.vihtarb:tooltip:0.1.9'
 }

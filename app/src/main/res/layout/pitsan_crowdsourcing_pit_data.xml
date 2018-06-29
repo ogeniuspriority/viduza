@@ -2,24 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/crowdsourcing_view"
+    android:layout_marginBottom="10dp"
+    android:clickable="true"
+    android:focusable="true"
     android:orientation="vertical"
+    android:focusableInTouchMode="true"
     android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:weightSum="90">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:orientation="vertical">
 
                 <TextView
@@ -27,6 +41,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Full Names"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -36,11 +54,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/location"
                     android:layout_width="match_parent"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    
                     android:layout_height="wrap_content"
                     android:text="District  Sector  Cell  village  street  House number"
                     android:textSize="16dp"
@@ -51,6 +76,10 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                 
                 android:layout_weight="30"
                 android:orientation="vertical">
 
@@ -58,6 +87,10 @@
                     android:id="@+id/start_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    
                     android:text="12/27/23"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -66,6 +99,9 @@
                     android:id="@+id/end_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:text="12/27/23"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -79,11 +115,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:weightSum="100">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_weight="50"
                 android:orientation="vertical">
 
@@ -101,11 +143,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    
                     android:layout_weight="30"
                     android:orientation="vertical">
 
@@ -113,6 +162,9 @@
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:text="Email: dihdi@uad8y.dsd"
                         android:textStyle="bold" />
 
@@ -122,12 +174,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        
                         android:text="Tel: 9353583"
                         android:textStyle="bold" />
 
@@ -137,12 +196,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/request_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:text="CROWDSOURCING"
                         android:textSize="16dp"
                         android:textStyle="bold" />

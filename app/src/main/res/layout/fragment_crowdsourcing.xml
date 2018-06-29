@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
 
     <LinearLayout
         android:id="@+id/buttonBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/button"
@@ -54,19 +54,48 @@
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/background_selector_0"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
+            android:listSelector="@android:color/holo_blue_bright"
+            android:longClickable="true"
+            android:paddingBottom="60dp" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabcrowdsourcing"
+    <FrameLayout
+        android:id="@+id/this_is_the_pop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginBottom="64dp"
-        android:visibility="gone"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-</LinearLayout>
+        android:background="#a6cdcdcd">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabcrowdsourcing"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/ic_send_black_24dp"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/the_text_to_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="16dp"
+                android:text=" Requests"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#333333"
+                android:textSize="22dp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>

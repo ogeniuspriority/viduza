@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -67,7 +66,7 @@ public class pitsan_load_message_feeds extends AsyncTask<Void, Void, String> {
             Toast.makeText(c, "No Internet!", Toast.LENGTH_SHORT).show();
         } else {
             //parse the json--
-            Log.w("jsonData_", jsonData);
+
             new pitsan_parse_message_threads(c, jsonData, list).execute();
 
 

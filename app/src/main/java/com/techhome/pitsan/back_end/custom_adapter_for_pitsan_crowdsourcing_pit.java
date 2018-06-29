@@ -1,15 +1,21 @@
 package com.techhome.pitsan.back_end;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.techhome.pitsan.R;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.techhome.pitsan.CrowdsourcingFragment.seltChoices_users_for_sending_top;
+import static com.techhome.pitsan.CrowdsourcingFragment.seltChoices_users_for_sending_top_removed;
 
 /**
  * Created by USER on 2/6/2017.
@@ -18,6 +24,8 @@ public class custom_adapter_for_pitsan_crowdsourcing_pit extends BaseAdapter {
     public List<String> data;
     public List<String> tags;
     public List<String> tags_unlike;
+
+    public List<String> chosen_rows;
     Context c;
     int layoutResourceId;
     //-------------
@@ -71,6 +79,16 @@ public class custom_adapter_for_pitsan_crowdsourcing_pit extends BaseAdapter {
         // this.layoutResourceId = resource;
         this.c = c;
 
+        tags = new ArrayList<String>();
+        tags_unlike = new ArrayList<String>();
+        chosen_rows = new ArrayList<String>();
+        int size = pitsan_single_pit_request_type.length;
+        for (int i = 0; i < size; i++) {
+            tags.add("tag");
+            tags_unlike.add("tag");
+            chosen_rows.add("notchecked");
+        }
+
 
     }
 
@@ -100,14 +118,16 @@ public class custom_adapter_for_pitsan_crowdsourcing_pit extends BaseAdapter {
         //-----For folder id,profile_photos
         if (convertView == null) {
             convertView = LayoutInflater.from(c).inflate(R.layout.pitsan_crowdsourcing_pit_data, parent, false);
-            viewHolder = new ViewHolder(convertView);
+            viewHolder = new ViewHolder();
             convertView.setTag(viewHolder);
             viewHolder.position = position;
+
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
             viewHolder.position = position;
         }
         convertView.setTag(viewHolder);
+
         //--------
         viewHolder.names = convertView.findViewById(R.id.names);
         viewHolder.names.setText(pitsan_single_pit_full_names[position]);
@@ -122,6 +142,35 @@ public class custom_adapter_for_pitsan_crowdsourcing_pit extends BaseAdapter {
         viewHolder.start_date.setText(pitsan_single_pit_start_date[position]);
         viewHolder.end_date = convertView.findViewById(R.id.end_date);
         viewHolder.end_date.setText(pitsan_single_pit_end_dat[position]);
+        viewHolder.crowdsourcing_view = convertView.findViewById(R.id.crowdsourcing_view);
+
+        viewHolder.crowdsourcing_view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                if (chosen_rows.get(position) == "notchecked") {
+                    viewHolder.crowdsourcing_view.setBackgroundColor(Color.parseColor("#AED6F1"));
+                    seltChoices_users_for_sending_top.add(pitsan_single_pit_ref_id[position]);
+                    chosen_rows.set(position, "checked");
+                } else {
+                    seltChoices_users_for_sending_top_removed.add(pitsan_single_pit_ref_id[position]);
+                    //seltChoices_users_for_sending_top.remove(position);
+                    viewHolder.crowdsourcing_view.setBackgroundColor(Color.TRANSPARENT);
+                    chosen_rows.set(position, "notchecked");
+                }
+                return false;
+            }
+        });
+
+        if (chosen_rows.get(position) == "notchecked") {
+
+            viewHolder.crowdsourcing_view.setBackgroundColor(Color.TRANSPARENT);
+            //chosen_rows.add(position, "checked");
+        } else {
+            viewHolder.crowdsourcing_view.setBackgroundColor(Color.parseColor("#AED6F1"));
+            // chosen_rows.add(position, "notchecked");
+        }
+        //----------
 
 
         viewHolder.volume = convertView.findViewById(R.id.volume);
@@ -158,6 +207,7 @@ public class custom_adapter_for_pitsan_crowdsourcing_pit extends BaseAdapter {
     }
 
     public static class ViewHolder {
+        static ArrayList<Integer> theseChoices = new ArrayList<Integer>();
         TextView names;
         TextView location;
         TextView start_date;
@@ -167,12 +217,12 @@ public class custom_adapter_for_pitsan_crowdsourcing_pit extends BaseAdapter {
         TextView email;
         TextView tel;
         TextView request_type;
+        View vrr;
+        LinearLayout crowdsourcing_view;
 
         int position;
 
-        public ViewHolder(View view) {
 
-        }
     }
 
 

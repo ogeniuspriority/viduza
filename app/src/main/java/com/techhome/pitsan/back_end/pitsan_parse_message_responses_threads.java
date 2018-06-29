@@ -3,6 +3,7 @@ package com.techhome.pitsan.back_end;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -46,9 +47,11 @@ public class pitsan_parse_message_responses_threads extends AsyncTask<Void, Void
         // swipe_view.setRefreshing(false);
         if (isParsed) {
             //span_count.setText(""+Boolax_favorite_booers_boos_remoteIds.length);
-            boolax_boos_list.setAdapter(new custom_adapter_for_pitsan_message_response_threads(c, thread_creator,
+            ListAdapter hdhdh = new custom_adapter_for_pitsan_message_response_threads(c, thread_creator,
                     thread_content,
-                    thread_creation_date));
+                    thread_creation_date);
+            boolax_boos_list.setAdapter(hdhdh);
+            boolax_boos_list.setSelection(hdhdh.getCount() - 1);
 
         } else {
 
@@ -67,18 +70,18 @@ public class pitsan_parse_message_responses_threads extends AsyncTask<Void, Void
 
             //------------------
             JSONArray Boollax_favorite_booers_boos_loaded = (JSONArray) posts_JSON
-                    .get("My Gorgeous loaded Boos");
+                    .get("the_messages_responses_for_truck_driver");
             //---All Fresh New Boos Data--To Load
-            String[] thread_creator = new String[Boollax_favorite_booers_boos_loaded.length()];
-            String[] thread_content = new String[Boollax_favorite_booers_boos_loaded.length()];
-            String[] thread_creation_date = new String[Boollax_favorite_booers_boos_loaded.length()];
+            thread_creator = new String[Boollax_favorite_booers_boos_loaded.length()];
+            thread_content = new String[Boollax_favorite_booers_boos_loaded.length()];
+            thread_creation_date = new String[Boollax_favorite_booers_boos_loaded.length()];
             //----
             for (int counter = 0; counter < Boollax_favorite_booers_boos_loaded.length(); counter++) {
                 thread_creator[counter] = Boollax_favorite_booers_boos_loaded
                         .getJSONObject(
                                 counter)
                         .getString(
-                                "boo_users_id")
+                                "pitsan_db_chat_threads_replies_sender")
                         .toString();
 
 
@@ -86,7 +89,7 @@ public class pitsan_parse_message_responses_threads extends AsyncTask<Void, Void
                         .getJSONObject(
                                 counter)
                         .getString(
-                                "PassedOnBoos")
+                                "pitsan_db_chat_threads_replies_message")
                         .toString();
                 //----
                 //--
@@ -94,7 +97,7 @@ public class pitsan_parse_message_responses_threads extends AsyncTask<Void, Void
                         .getJSONObject(
                                 counter)
                         .getString(
-                                "boo_users_avatar_image")
+                                "pitsan_db_chat_threads_replies_regdate")
                         .toString();
 
                 //----------

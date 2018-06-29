@@ -26,6 +26,8 @@ public class Config {
             + "PITSAN/mobile_app/pitsan_load_messages_to_pitsan.php";
     public static String PITSAN_REF_ID_OFFERS_PIT_DATA_LOAD_FEEDS = IP_ADDRESS
             + "PITSAN/mobile_app/pitsan_load_ref_id_offers_data.php";
+    public static String PITSAN_MESSAGES_RESPONSES_PIT_DATA_LOAD_FEEDS = IP_ADDRESS
+            + "PITSAN/mobile_app/pitsan_load_messages_responses_to_pitsan.php";
 
 
 }

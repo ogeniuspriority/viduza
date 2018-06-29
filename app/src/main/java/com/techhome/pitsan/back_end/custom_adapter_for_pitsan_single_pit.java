@@ -1,15 +1,21 @@
 package com.techhome.pitsan.back_end;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.techhome.pitsan.R;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.techhome.pitsan.SingleFragment.seltChoices_users_for_sending_top;
+import static com.techhome.pitsan.SingleFragment.seltChoices_users_for_sending_top_removed;
 
 /**
  * Created by USER on 2/6/2017.
@@ -18,6 +24,7 @@ public class custom_adapter_for_pitsan_single_pit extends BaseAdapter {
     public List<String> data;
     public List<String> tags;
     public List<String> tags_unlike;
+    public List<String> chosen_rows;
     Context c;
     int layoutResourceId;
     //-------------
@@ -69,6 +76,15 @@ public class custom_adapter_for_pitsan_single_pit extends BaseAdapter {
         this.pitsan_single_pit_end_date = pitsan_single_pit_end_date;
         // this.layoutResourceId = resource;
         this.c = c;
+        tags = new ArrayList<String>();
+        tags_unlike = new ArrayList<String>();
+        chosen_rows = new ArrayList<String>();
+        int size = pitsan_single_pit_request_type.length;
+        for (int i = 0; i < size; i++) {
+            tags.add("tag");
+            tags_unlike.add("tag");
+            chosen_rows.add("notchecked");
+        }
 
 
     }
@@ -152,6 +168,36 @@ public class custom_adapter_for_pitsan_single_pit extends BaseAdapter {
         viewHolder.tel.setText("");
         viewHolder.request_type = convertView.findViewById(R.id.request_type);
         viewHolder.request_type.setText("SINGLE PIT EMPTYING");
+        viewHolder.crowdsourcing_view = convertView.findViewById(R.id.crowdsourcing_view);
+
+        viewHolder.crowdsourcing_view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                if (chosen_rows.get(position) == "notchecked") {
+                    viewHolder.crowdsourcing_view.setBackgroundColor(Color.parseColor("#AED6F1"));
+                    seltChoices_users_for_sending_top.add(pitsan_single_pit_ref_id[position]);
+                    chosen_rows.set(position, "checked");
+                } else {
+                    seltChoices_users_for_sending_top_removed.add(pitsan_single_pit_ref_id[position]);
+                    //seltChoices_users_for_sending_top.remove(position);
+                    viewHolder.crowdsourcing_view.setBackgroundColor(Color.TRANSPARENT);
+                    chosen_rows.set(position, "notchecked");
+                }
+                return false;
+            }
+        });
+
+        if (chosen_rows.get(position) == "notchecked") {
+
+            viewHolder.crowdsourcing_view.setBackgroundColor(Color.TRANSPARENT);
+            //chosen_rows.add(position, "checked");
+        } else {
+            viewHolder.crowdsourcing_view.setBackgroundColor(Color.parseColor("#AED6F1"));
+            // chosen_rows.add(position, "notchecked");
+        }
+        //----------
+
 
         return convertView;
     }
@@ -166,7 +212,7 @@ public class custom_adapter_for_pitsan_single_pit extends BaseAdapter {
         TextView email;
         TextView tel;
         TextView request_type;
-
+        LinearLayout crowdsourcing_view;
         int position;
 
         public ViewHolder(View view) {

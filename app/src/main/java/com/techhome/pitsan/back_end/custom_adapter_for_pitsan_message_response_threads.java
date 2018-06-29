@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.techhome.pitsan.R;
+import com.techhome.pitsan.TruckDashboard;
 
 import java.util.List;
 
@@ -76,6 +78,37 @@ public class custom_adapter_for_pitsan_message_response_threads extends BaseAdap
 
         //---------------------------
         //final Boolax_favorite_booers_boos_objects boolax_boos = (Boolax_favorite_booers_boos_objects) getItem(position);
+        viewHolder.thread_creator_left = convertView.findViewById(R.id.thread_creator);
+        viewHolder.thread_content_left = convertView.findViewById(R.id.thread_content);
+        viewHolder.thread_creation_date_left = convertView.findViewById(R.id.thread_creation_date);
+
+        viewHolder.thread_creator_right = convertView.findViewById(R.id.thread_creator_right);
+        viewHolder.thread_content_right = convertView.findViewById(R.id.thread_content_right);
+        viewHolder.thread_creation_date_right = convertView.findViewById(R.id.thread_creation_date_right);
+
+        viewHolder.left_pattern = convertView.findViewById(R.id.left_pattern);
+        viewHolder.right_pattern = convertView.findViewById(R.id.right_pattern);
+
+        viewHolder.left_pattern.setVisibility(View.VISIBLE);
+        viewHolder.right_pattern.setVisibility(View.VISIBLE);
+        if (thread_creator[position].equalsIgnoreCase(TruckDashboard.username)) {
+            viewHolder.left_pattern.setVisibility(View.GONE);
+            viewHolder.right_pattern.setVisibility(View.VISIBLE);
+
+            viewHolder.thread_creator_right.setText(thread_creator[position]);
+            viewHolder.thread_content_right.setText(thread_content[position]);
+            viewHolder.thread_creation_date_right.setText(thread_creation_date[position]);
+
+
+        } else {
+            viewHolder.left_pattern.setVisibility(View.VISIBLE);
+            viewHolder.right_pattern.setVisibility(View.GONE);
+
+            viewHolder.thread_creator_left.setText(thread_creator[position]);
+            viewHolder.thread_content_left.setText(thread_content[position]);
+            viewHolder.thread_creation_date_left.setText(thread_creation_date[position]);
+
+        }
 
         convertView.setTag(viewHolder);
 
@@ -97,6 +130,8 @@ public class custom_adapter_for_pitsan_message_response_threads extends BaseAdap
         TextView thread_creator_right;
         TextView thread_content_right;
         TextView thread_creation_date_right;
+        LinearLayout left_pattern;
+        LinearLayout right_pattern;
 
         int position;
 

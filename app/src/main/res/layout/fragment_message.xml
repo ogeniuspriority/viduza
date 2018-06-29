@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
+        android:layout_weight="5"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -24,7 +24,7 @@
         <EditText
             android:id="@+id/editText5"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:background="@color/colorWhite"
             android:ems="10"
             android:gravity="top|left"
@@ -46,12 +46,17 @@
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="80">
+        android:layout_weight="95">
 
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#cdcdcd"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
+            android:longClickable="true" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

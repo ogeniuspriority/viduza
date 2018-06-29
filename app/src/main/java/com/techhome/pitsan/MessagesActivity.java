@@ -39,8 +39,8 @@ public class MessagesActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         Intent in = getIntent();
         Bundle bundle = in.getExtras();
-        String name = bundle.getString("Name");
-        actionBar.setTitle(name);
+        final String TheidOfThisThread = bundle.getString("TheidOfThisThread");
+        actionBar.setTitle("Message Chats");
 
         //---------
         list = findViewById(R.id.list);
@@ -52,10 +52,12 @@ public class MessagesActivity extends AppCompatActivity {
         swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new pitsan_load_message_feeds_responses(MessagesActivity.this, Config.PITSAN_SINGLE_PIT_DATA_LOAD_FEEDS.toString(), TruckDashboard.username, swiperefresh, list).execute();
+                new pitsan_load_message_feeds_responses(MessagesActivity.this, Config.PITSAN_MESSAGES_RESPONSES_PIT_DATA_LOAD_FEEDS.toString(), TheidOfThisThread, swiperefresh, list).execute();
             }
         });
         //-----------
+        new pitsan_load_message_feeds_responses(MessagesActivity.this, Config.PITSAN_MESSAGES_RESPONSES_PIT_DATA_LOAD_FEEDS.toString(), TheidOfThisThread, swiperefresh, list).execute();
+
 
     }
 
